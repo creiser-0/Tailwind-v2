@@ -21,7 +21,20 @@ const BodyRow: FC<iBodyRowProps> = ({ data, nestedKeys, changeModalInfo }) => {
 
         return keys.map((key) => {
             if (nestedKeys.includes(key)) {
-                return <td key={key}>{!isExpanded && <button onClick={()=>{changeModalInfo(data[key])}}>SHOW</button>}</td>;
+                return (
+                    <td key={key}>
+                        {!isExpanded && (
+                            <button
+                                onClick={() => {
+                                    changeModalInfo(data[key]);
+                                }}
+                                className="show-more"
+                            >
+                                SHOW
+                            </button>
+                        )}
+                    </td>
+                );
             } else {
                 return <td key={key}>{data[key]}</td>;
             }
@@ -42,8 +55,12 @@ const BodyRow: FC<iBodyRowProps> = ({ data, nestedKeys, changeModalInfo }) => {
 
     return (
         <>
-            <tr>
-                {hasExpand && <th onClick={switchExpanded}>E</th>}
+            <tr className="body-row">
+                {hasExpand && (
+                    <td className="expand" onClick={switchExpanded}>
+                        E
+                    </td>
+                )}
                 {cellList}
             </tr>
             {isExpanded && (

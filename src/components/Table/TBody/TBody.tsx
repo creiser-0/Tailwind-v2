@@ -40,7 +40,7 @@ const TBody: FC<iTBodyProps> = ({
 
     const RowList = getRowList();
 
-    return <tbody>{RowList}</tbody>;
+    return <tbody className="tbody">{RowList}</tbody>;
 };
 
 export default TBody;

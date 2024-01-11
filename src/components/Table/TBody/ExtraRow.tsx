@@ -23,7 +23,7 @@ const ExtraRow: FC<iExtraRowProps> = ({ colSpan, data, changeModalInfo }) => {
         <tr>
             <td></td>
             <td colSpan={colSpan}>
-                <div>{nestedCellList}</div>
+                <div className="extra-row-div">{nestedCellList}</div>
             </td>
         </tr>
     );

@@ -44,8 +44,8 @@ const THead: FC<iTHeadProps> = ({
     const headerList = getHeaderList();
 
     return (
-        <thead>
-            <tr>
+        <thead className="thead">
+            <tr className="header-row">
                 {hasExpand && <th />}
                 {headerList}
             </tr>

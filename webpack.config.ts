@@ -10,11 +10,11 @@ interface iConfiguration extends Configuration {
         hot: boolean;
         compress: boolean;
         port: number;
-    }
+    };
 }
 
 const config: iConfiguration = {
-    mode: "development",  /* (process.env.NODE_ENV as "production" | "development" | undefined) ?? */
+    mode: "development" /* (process.env.NODE_ENV as "production" | "development" | undefined) ?? */,
     entry: "./src/index.tsx",
     module: {
         rules: [
@@ -25,12 +25,16 @@ const config: iConfiguration = {
             },
             {
                 test: /\.css$/i,
-                include: path.resolve(__dirname, 'src'),
-                use: ['style-loader', 'css-loader', 'postcss-loader'],
+                include: path.resolve(__dirname, "src"),
+                use: ["style-loader", "css-loader", "postcss-loader"],
             },
             {
                 test: /\.(png|jpg)$/,
-                type: 'asset/resource',
+                type: "asset/resource",
+            },
+            {
+                test: /\.svg$/,
+                type: "asset/inline",
             },
         ],
     },
@@ -40,17 +44,16 @@ const config: iConfiguration = {
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, "./dist"),
-        assetModuleFilename: 'assets/[name][ext]',
+        assetModuleFilename: "assets/[name][ext]",
     },
     plugins: [
         new CopyWebpackPlugin({
-            patterns: [{ from: "public" },
-            ]
+            patterns: [{ from: "public" }],
         }),
     ],
     devServer: {
         static: {
-            directory: path.join(__dirname, 'public'),
+            directory: path.join(__dirname, "public"),
         },
         hot: true,
         compress: true,

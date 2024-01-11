@@ -3,14 +3,19 @@ import Table from "./components/Table/Table";
 import { iData } from "./custom.interfaces/table.interfaces";
 import Modal from "./components/Modal/Modal";
 import Select from "./components/Select/Select";
+import "./style.css"
 
 const App: FC = () => {
     const [data, setData] = useState<object | any[]>({});
 
     async function getApiData(url: string) {
-        const fetchData = await fetch(url);
-        const data = await fetchData.json();
-        setData(data);
+        try {
+            const fetchData = await fetch(url);
+            const data = await fetchData.json();
+            setData(data);
+        } catch {
+            setData({});
+        }
     }
 
     const [modalState, setModalState] = useState<[boolean, iData]>([false, {}]);
@@ -24,7 +29,7 @@ const App: FC = () => {
     };
 
     return (
-        <main>
+        <main className="main">
             {/* <Header></Header> */}
             <Select getApiData={getApiData} />
             <Table data={data} changeModalInfo={changeModalInfo} />

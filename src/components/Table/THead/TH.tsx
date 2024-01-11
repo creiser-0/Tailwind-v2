@@ -1,4 +1,7 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useState } from "react";
+import defaultImage from "../../../assets/default.svg"
+import ascendImage from "../../../assets/ascend.svg"
+import descendImage from "../../../assets/descend.svg"
 
 interface iTH {
     header: string;
@@ -9,29 +12,43 @@ interface iTH {
 
 const TH: FC<iTH> = ({ header, hasFilter , setCurrentFilterInfo, currentHeader}) => {
 
-    const sortOrder = useRef(0)
+
+    const [sortOrder, setSortOrder] = useState(0)
+
+    const [image, setImage] = useState(defaultImage)
+
+    useEffect(()=>{
+        if (sortOrder === 1){
+            setImage(ascendImage)
+        } else if (sortOrder === 2){
+            setImage(descendImage)
+        } else {
+            setImage(defaultImage)
+        }
+
+    },[sortOrder])
 
     useEffect(()=>{
         if (currentHeader !== header){
-            sortOrder.current = 0
+            setSortOrder(0)
         }
     })
 
     const clickHandler = ()=>{
-        if (sortOrder.current >= 2){
-            sortOrder.current = 0
-            setCurrentFilterInfo([header, sortOrder.current])
+        if (sortOrder >= 2){
+            setSortOrder(0)
+            setCurrentFilterInfo([header, 0])
         } else {
-            sortOrder.current += 1
-            setCurrentFilterInfo([header, sortOrder.current])
+            setSortOrder(sortOrder + 1)
+            setCurrentFilterInfo([header, sortOrder+1])
         }
     }
 
     return (
-        <th onClick={hasFilter?clickHandler:()=>{}}>
-            <div>
+        <th onClick={hasFilter?clickHandler:()=>{}} className="th">
+            <div className="flex justify-center">
                 <p>{header}</p>
-                {hasFilter && <img />}
+                {hasFilter && <img className="filter-image"  src={image}/>}
             </div>
         </th>
     );

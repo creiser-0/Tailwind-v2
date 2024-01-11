@@ -1,0 +1,42 @@
+.table-div {
+    @apply flex justify-center;
+}
+
+.table {
+    @apply table-auto w-3/4 border-collapse;
+}
+
+.tbody {
+    @apply p-0;
+}
+
+.body-row {
+    @apply border-y-2 border-purple-400
+}
+
+.show-more
+
+.expand
+
+.extra-row-div
+
+.td {
+    @apply p-0;
+}
+
+.thead {
+    @apply p-0 border-b-2 border-purple-700
+}
+
+.header-row {
+    @apply p-0 border-b-2 border-purple-700
+}
+
+.th {
+    @apply *:*:first-letter:uppercase *:*:text-purple-700 *:relative
+}
+
+.filter-image {
+    @apply w-2 h-2 top-0;
+}
+

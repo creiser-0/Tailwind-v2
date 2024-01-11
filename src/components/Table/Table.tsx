@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { iData } from "../../custom.interfaces/table.interfaces";
 import TBody from "./TBody/TBody";
 import THead from "./THead/THead";
+import "./Table.css"
 
 interface iTableProps {
     data: iData[] | iData;
@@ -71,7 +72,7 @@ const Table: FC<iTableProps> = ({ data , changeModalInfo}) => {
 
     return (
         <div className="table-div">
-            <table>
+            <table className="table">
                 <THead
                     data={sortedData}
                     nestedKeys={nestedKeys}
