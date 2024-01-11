@@ -1,4 +1,5 @@
-import { FC, ReactElement, useRef } from "react";
+import { FC, useRef } from "react";
+import "./Select.css"
 
 interface iSelectProps {
     getApiData: (url: string) => void;
@@ -14,16 +15,17 @@ const Select: FC<iSelectProps> = ({ getApiData }) => {
     };
 
     return (
-        <div>
-            <label htmlFor="select">Please Enter an API URL</label>
+        <div className="select-div">
+            <label htmlFor="select" className="select-label">Please Enter an API URL</label>
             <input
                 onChange={eventHandler}
                 type="url"
                 id="select"
+                className="select-input"
                 ref={input}
                 placeholder="https://jsonplaceholder.typicode.com/users"
             />
-            <button onClick={eventHandler}>x</button>
+            <button onClick={eventHandler} className="submit">Submit</button>
         </div>
     );
 };

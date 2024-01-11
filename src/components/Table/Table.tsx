@@ -2,15 +2,16 @@ import { FC, useState } from "react";
 import { iData } from "../../custom.interfaces/table.interfaces";
 import TBody from "./TBody/TBody";
 import THead from "./THead/THead";
-import "./Table.css"
+import "./Table.css";
 
 interface iTableProps {
     data: iData[] | iData;
     changeModalInfo: (data: iData) => void;
 }
 
-const Table: FC<iTableProps> = ({ data , changeModalInfo}) => {
+const Table: FC<iTableProps> = ({ data, changeModalInfo }) => {
     const getNestedKeys = (data: iData) => {
+
         return Object.keys(data).filter(
             (key) => Array.isArray(data[key]) || typeof data[key] === "object"
         );

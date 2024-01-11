@@ -26,7 +26,7 @@ const THead: FC<iTHeadProps> = ({
     const getHeaderList = () => {
         const keys = Object.keys(isArray ? data[0] : data);
         return keys.map((key) => {
-            const hasFilter = !nestedKeys.includes(key);
+            const hasFilter = isArray?!nestedKeys.includes(key):false;
             return (
                 <TH
                     key={key}

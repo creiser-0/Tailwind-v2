@@ -15,7 +15,7 @@ const Modal: FC<iModalProps> = ({ data, changeModalInfo, switchModal }) => {
         <div className="modal" onClick={switchModal}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="close-button" onClick={switchModal}>x</button>
-                <Table data={data} changeModalInfo={changeModalInfo}></Table>
+                <Table data={data?data:{Nothing:"None"}} changeModalInfo={changeModalInfo}></Table>
             </div>
         </div>
     );

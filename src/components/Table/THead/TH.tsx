@@ -45,9 +45,9 @@ const TH: FC<iTH> = ({ header, hasFilter , setCurrentFilterInfo, currentHeader})
     }
 
     return (
-        <th onClick={hasFilter?clickHandler:()=>{}} className="th">
-            <div className="flex justify-center">
-                <p>{header}</p>
+        <th onClick={hasFilter?clickHandler:()=>{}} className={hasFilter?"cursor-pointer":"cursor-default"}>
+            <div className="th-div">
+                <p className="th-text">{header}</p>
                 {hasFilter && <img className="filter-image"  src={image}/>}
             </div>
         </th>

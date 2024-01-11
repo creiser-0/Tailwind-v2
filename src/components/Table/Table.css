@@ -1,5 +1,5 @@
 .table-div {
-    @apply flex justify-center;
+    @apply flex justify-center w-full;
 }
 
 .table {
@@ -11,32 +11,45 @@
 }
 
 .body-row {
-    @apply border-y-2 border-purple-400
+    @apply border-y-2 border-purple-400 *:text-sm hover:bg-slate-300 even:bg-slate-200;
 }
 
-.show-more
+.show-more {
+    @apply text-purple-500 px-1 cursor-pointer hover:text-purple-700 hover:font-bold active:text-gray-500;
+}
 
-.expand
+.expand {
+    @apply px-1 cursor-pointer hover:font-bold text-purple-700 border-r  border-r-purple-400 border-dashed active:text-gray-500;
+}
 
-.extra-row-div
+.extra-row-div {
+    @apply flex flex-row *:flex *:items-center *:flex-col;
+}
+
+.extra-header {
+    @apply first-letter:uppercase text-purple-700 font-bold;
+}
 
 .td {
-    @apply p-0;
+    @apply px-1;
 }
 
 .thead {
-    @apply p-0 border-b-2 border-purple-700
+    @apply p-0 border-b-2 border-purple-700;
 }
 
 .header-row {
-    @apply p-0 border-b-2 border-purple-700
+    @apply p-0 border-b-2 border-purple-700;
 }
 
-.th {
-    @apply *:*:first-letter:uppercase *:*:text-purple-700 *:relative
+.th-div {
+    @apply *:first-letter:uppercase *:text-purple-700 grid justify-start items-center grid-rows-1 relative *:self-end min-w-10;
+}
+
+.th-text {
+    @apply pr-3 left-0 relative top-0;
 }
 
 .filter-image {
-    @apply w-2 h-2 top-0;
+    @apply w-4 h-6 absolute right-0 top-0 mr-2;
 }
-

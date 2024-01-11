@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { iData } from "../../../custom.interfaces/table.interfaces";
 import ExtraRow from "./ExtraRow";
+import "../Table.css"
 
 interface iBodyRowProps {
     data: iData;
@@ -22,7 +23,7 @@ const BodyRow: FC<iBodyRowProps> = ({ data, nestedKeys, changeModalInfo }) => {
         return keys.map((key) => {
             if (nestedKeys.includes(key)) {
                 return (
-                    <td key={key}>
+                    <td key={key} className="td px-1">
                         {!isExpanded && (
                             <button
                                 onClick={() => {
@@ -30,13 +31,13 @@ const BodyRow: FC<iBodyRowProps> = ({ data, nestedKeys, changeModalInfo }) => {
                                 }}
                                 className="show-more"
                             >
-                                SHOW
+                                Show
                             </button>
                         )}
                     </td>
                 );
             } else {
-                return <td key={key}>{data[key]}</td>;
+                return <td key={key} className="td px-1">{data[key]}</td>;
             }
         });
     };
@@ -57,7 +58,7 @@ const BodyRow: FC<iBodyRowProps> = ({ data, nestedKeys, changeModalInfo }) => {
         <>
             <tr className="body-row">
                 {hasExpand && (
-                    <td className="expand" onClick={switchExpanded}>
+                    <td className="expand" onClick={switchExpanded} title="Expand row">
                         E
                     </td>
                 )}

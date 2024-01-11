@@ -1,0 +1,15 @@
+.select-input{
+    @apply placeholder:text-purple-300 border border-purple-400 focus:outline-purple-700
+}
+
+.select-div{
+    @apply flex justify-center items-center flex-col mb-5
+}
+
+.select-label{
+    @apply text-purple-600 font-bold
+}
+
+.submit{
+    @apply text-purple-800 w-max px-1 active:bg-gray-200 mt-2 border-purple-400 border active:border-2 active:border-purple-600
+}

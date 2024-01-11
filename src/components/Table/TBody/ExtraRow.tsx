@@ -9,10 +9,12 @@ interface iExtraRowProps {
 }
 
 const ExtraRow: FC<iExtraRowProps> = ({ colSpan, data, changeModalInfo }) => {
+
     const nestedCellList =data.map((cell) => {
+            if (!cell.data) return <div key={cell.header}></div>
             return (
                 <div key={cell.header}>
-                    <p>{cell.header}</p>
+                    <p className="extra-header">{cell.header}</p>
                     <Table data={cell.data} changeModalInfo={changeModalInfo} />
                 </div>
             );
