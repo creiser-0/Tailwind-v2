@@ -4,7 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.header{
+    @apply bg-purple-800 w-full
+}
 
-.main{
+.api-table{
     @apply flex flex-col items-center justify-center 
 }

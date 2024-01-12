@@ -7,9 +7,9 @@ interface iConfiguration extends Configuration {
         static: {
             directory: string;
         };
-        hot: boolean;
         compress: boolean;
         port: number;
+        historyApiFallback: boolean;
     };
 }
 
@@ -55,9 +55,9 @@ const config: iConfiguration = {
         static: {
             directory: path.join(__dirname, "public"),
         },
-        hot: true,
         compress: true,
         port: 9000,
+        historyApiFallback: true
     },
 };
 

@@ -1,47 +1,20 @@
-import { FC, useState } from "react";
-import Table from "./components/Table/Table";
-import { iData } from "./custom.interfaces/table.interfaces";
-import Modal from "./components/Modal/Modal";
-import Select from "./components/Select/Select";
-import "./style.css"
+import { FC } from "react";
+import { Route, Routes } from "react-router";
+import Layout from "./components/Layout/Layout";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
+import ApiTable from "./components/ApiTable/ApiTable";
+import Home from "./components/Home/Home";
+import "./style.css";
 
 const App: FC = () => {
-    const [data, setData] = useState<object | any[]>({});
-
-    async function getApiData(url: string) {
-        try {
-            const fetchData = await fetch(url);
-            const data = await fetchData.json();
-            setData(data);
-        } catch {
-            setData({});
-        }
-    }
-
-    const [modalState, setModalState] = useState<[boolean, iData]>([false, {}]);
-
-    const switchModal = () => {
-        setModalState([!modalState[0], modalState[1]]);
-    };
-
-    const changeModalInfo = (data: iData) => {
-        setModalState([true, data]);
-    };
-
     return (
-        <main className="main">
-            {/* <Header></Header> */}
-            <Select getApiData={getApiData} />
-            <Table data={data} changeModalInfo={changeModalInfo} />
-            {modalState[0] && (
-                <Modal
-                    data={modalState[1]}
-                    changeModalInfo={changeModalInfo}
-                    switchModal={switchModal}
-                />
-            )}
-            {/* <Footer></Footer> */}
-        </main>
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Home/>}/>
+                <Route path="apiTable" element={<ApiTable />} />
+                <Route path="*" element={<ErrorPage />} />
+            </Route>
+        </Routes>
     );
 };
 

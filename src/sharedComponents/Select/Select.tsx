@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import "./Select.css"
 
 interface iSelectProps {
@@ -12,6 +12,7 @@ const Select: FC<iSelectProps> = ({ getApiData }) => {
         if (input.current?.value !== "") {
             getApiData(input.current!.value);
         }
+        console.log("EJECUTADO")
     };
 
     return (
@@ -19,7 +20,6 @@ const Select: FC<iSelectProps> = ({ getApiData }) => {
             <label htmlFor="select" className="select-label">Please Enter an API URL</label>
             <input
                 onChange={eventHandler}
-                type="url"
                 id="select"
                 className="select-input"
                 ref={input}
