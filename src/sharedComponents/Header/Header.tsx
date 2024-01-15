@@ -1,14 +1,22 @@
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { notificationContext } from "../../contexts/notifications/notificationContext";
 import bellIcon from "../../assets/notificationsIcons/bell-icon.svg";
 
 const Header: FC = () => {
     const [showNoti, setShowNoti] = useState(false);
-    const [notSeenNotifications, setNotSeenNotifications] = useState(2);
-    const { contextValue, updateContext } = useContext(notificationContext)!;
+    const [notSeenNotifications, setNotSeenNotifications] = useState(0);
+    const { contextValue, updateContext } = useContext(notificationContext)
 
-    const notificationList = contextValue.map((notification, i) => {
+    useEffect(()=>{
+        const length = contextValue!.length
+        if (length === 0){
+            setShowNoti(false)
+        }
+        setNotSeenNotifications(length)
+    },[contextValue])
+
+    const notificationList = contextValue!.map((notification, i) => {
         return (
             <div className="notification" key={i}>
                 <img
@@ -20,9 +28,9 @@ const Header: FC = () => {
                 <button
                     className="delete-notification"
                     onClick={() => {
-                        const newContext = [...contextValue]
+                        const newContext = [...contextValue!]
                         newContext.splice(i, 1)
-                        updateContext(newContext);
+                        updateContext!(newContext);
                     }}
                 >
                     X

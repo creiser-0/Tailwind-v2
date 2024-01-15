@@ -11,9 +11,6 @@ const Layout: FC = () => {
                 <Outlet />
             </div>
         </NotificationContextProvider>
-
-        // <notificationContextProvider>
-        //             // </notificationContextProvider>
     );
 };
 

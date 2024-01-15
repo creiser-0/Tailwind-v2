@@ -17,7 +17,7 @@
 }
 
 .notification-button {
-    @apply text-blue-800 justify-end mr-5 max-w-8
+    @apply text-blue-800 justify-end mr-5 max-w-8 relative
 }
 
 .notifications-total{
@@ -25,15 +25,15 @@
 }
 
 .notification{
-    @apply p-0
+    @apply flex flex-row m-2 justify-between
 }
 
 .notification-text{
-    @apply p-0
+    @apply mx-3 text-wrap
 }
 
 .notification-image{
-    @apply p-0
+    @apply max-w-3 
 }
 
 .delete-notification{
@@ -41,7 +41,27 @@
 }
 
 .notifications{
-    @apply absolute right-4 top-8 bg-slate-500 min-w-20
+    @apply absolute right-4 top-8 bg-slate-300 min-w-20 rounded
+}
+
+.layout{
+    @apply flex flex-col justify-center
+}
+
+.create-div{
+    @apply flex w-3/4 flex-col self-center items-center mt-5
+}
+
+.create-notification{
+    @apply grid grid-flow-col  my-2 items-start w-full justify-items-end
+}
+
+.create-text{
+    @apply justify-self-start text-purple-800 font-semibold
+}
+
+.create-button{
+    @apply  text-purple-700 px-1 cursor-pointer hover:text-purple-900 hover:font-bold active:text-gray-500;
 }
 
 .api-table {

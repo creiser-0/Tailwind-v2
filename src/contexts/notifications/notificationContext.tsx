@@ -10,13 +10,10 @@ interface iNotificationContext {
     updateContext: (newNotificationList: iNotification[]) => void;
 }
 
-const notificationContext = createContext<iNotificationContext | undefined>(
-    undefined
-);
-
 interface iNotificationProviderProps {
     children: ReactNode;
 }
+const notificationContext = createContext<Partial<iNotificationContext>>({});
 
 const NotificationContextProvider: FC<iNotificationProviderProps> = ({
     children,
