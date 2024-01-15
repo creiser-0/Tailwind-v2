@@ -4,10 +4,46 @@
 @tailwind components;
 @tailwind utilities;
 
-.header{
-    @apply bg-purple-800 w-full
+.header {
+    @apply bg-purple-800 w-full flex flex-row justify-between relative;
 }
 
-.api-table{
-    @apply flex flex-col items-center justify-center 
+.navigation {
+    @apply flex flex-row w-full place-content-center;
+}
+
+.link-list {
+    @apply flex flex-row justify-start w-full *:mx-7 my-2  *:text-white *:text-2xl *:font-bold *:uppercase *:even:justify-self-center
+}
+
+.notification-button {
+    @apply text-blue-800 justify-end mr-5 max-w-8
+}
+
+.notifications-total{
+    @apply bg-red-700 rounded-2xl text-white
+}
+
+.notification{
+    @apply p-0
+}
+
+.notification-text{
+    @apply p-0
+}
+
+.notification-image{
+    @apply p-0
+}
+
+.delete-notification{
+    @apply p-0
+}
+
+.notifications{
+    @apply absolute right-4 top-8 bg-slate-500 min-w-20
+}
+
+.api-table {
+    @apply flex flex-col items-center justify-center;
 }

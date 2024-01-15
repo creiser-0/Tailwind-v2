@@ -1,7 +1,9 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
+import notificationContext from "../../contexts/notifications/notificationContext";
 
 const Home: FC = () => {
-    return <h1>HOME Basic</h1>;
+    const text = useContext(notificationContext)
+    return <h1>HOME </h1>;
 };
 
 export default Home;
