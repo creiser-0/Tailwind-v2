@@ -3,37 +3,29 @@ import { iNotification } from "./contexts/notificationContext";
 import { RootState } from "./store";
 
 export interface iNotificationState {
-    notificationList: iNotification[];
+    notification: iNotification | undefined;
 }
 
-const initialState: iNotificationState = { notificationList: [] };
+const initialState: Partial<iNotificationState> = { notification: undefined };
 
 export const notificationSlice = createSlice({
     name: "notificationList",
     initialState,
     reducers: {
         addNotification: (state, action: PayloadAction<iNotification>) => {
-            state.notificationList.push(action.payload);
+            state.notification = action.payload;
+            
         },
-        deleteNotification: (state, action: PayloadAction<number>) => {
-            state.notificationList.splice(action.payload, 1);
+        deleteNotification: (state ) => {
+            state.notification = initialState.notification;
         },
-        addMultipleNotification: (
-            state,
-            action: PayloadAction<iNotification[]>
-        ) => {
-            state.notificationList.concat(action.payload);
-        },
-        deleteAllNotifications:(state)=>{
-            state.notificationList = []
-        }
     },
 });
 
-export const { addNotification, deleteNotification, addMultipleNotification, deleteAllNotifications} =
+export const { addNotification, deleteNotification } =
     notificationSlice.actions;
 
 export const selectNotificationList = (state: RootState) =>
-    state.notifications.notificationList;
+    state.notifications.notification;
 
 export default notificationSlice.reducer;

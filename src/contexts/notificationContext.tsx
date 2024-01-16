@@ -6,8 +6,8 @@ interface iNotification {
 }
 
 interface iNotificationContext {
-    contextValue: iNotification[];
-    updateContext: (newNotificationList: iNotification[]) => void;
+    contextValue: iNotification;
+    updateContext: (newNotificationList: iNotification) => void;
 }
 
 interface iNotificationProviderProps {
@@ -18,9 +18,9 @@ const notificationContext = createContext<Partial<iNotificationContext>>({});
 const NotificationContextProvider: FC<iNotificationProviderProps> = ({
     children,
 }) => {
-    const [contextValue, setContextValue] = useState<iNotification[]>([]);
+    const [contextValue, setContextValue] = useState<iNotification>();
 
-    const updateContext = (newContext: iNotification[]) =>
+    const updateContext = (newContext: iNotification) =>
         setContextValue(newContext);
 
     return (

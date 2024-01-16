@@ -6,7 +6,7 @@ import messageIcon from "../../assets/notificationsIcons/message-icon.svg";
 import newIcon from "../../assets/notificationsIcons/new-icon.svg";
 
 const CreateNoti: FC = () => {
-    const { contextValue, updateContext } = useContext(notificationContext);
+    const { updateContext } = useContext(notificationContext);
 
     const messageNotification: iNotification = {
         icon: messageIcon,
@@ -27,7 +27,7 @@ const CreateNoti: FC = () => {
                 <button
                     className="create-button"
                     onClick={() => {
-                        updateContext!([...contextValue!, notification]);
+                        updateContext!(notification);
                     }}
                 >
                     Create

@@ -5,40 +5,29 @@ import {
     notificationContext,
 } from "../../contexts/notificationContext";
 import bellIcon from "../../assets/notificationsIcons/bell-icon.svg";
-import {
-    deleteAllNotifications,
-    selectNotificationList,
-} from "../../notificationSlice";
+import { deleteNotification, selectNotificationList } from "../../notificationSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 
 const Header: FC = () => {
-    const dispatch = useAppDispatch();
     const [showNoti, setShowNoti] = useState(false);
     const [notSeenNotifications, setNotSeenNotifications] = useState(0);
     const [notifications, setNotifications] = useState<iNotification[]>([]);
     const { contextValue, updateContext } = useContext(notificationContext);
     const notificationRedux = useAppSelector(selectNotificationList);
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
-        setNotifications([...notificationRedux, ...contextValue!]);
-        updateContext!([]);
-        dispatch(deleteAllNotifications());
-    }, []);
-
-    useEffect(() => {
-        if (contextValue![0]) {
-            const newNotifications = [...notifications, contextValue?.at(-1)!];
+        if (contextValue) {
+            const newNotifications = [...notifications, contextValue];
             setNotifications(newNotifications);
         }
     }, [contextValue]);
 
     useEffect(() => {
-        if (notificationRedux[0]) {
-            const newNotifications = [
-                ...notifications,
-                notificationRedux.at(-1)!,
-            ];
+        if (notificationRedux) {
+            const newNotifications = [...notifications, notificationRedux];
             setNotifications(newNotifications);
+            dispatch(deleteNotification())
         }
     }, [notificationRedux]);
 
