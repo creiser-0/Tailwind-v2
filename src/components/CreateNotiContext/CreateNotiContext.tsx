@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 import notificationContext, {
     iNotification,
-} from "../../contexts/notifications/notificationContext";
+} from "../../contexts/notificationContext";
 import messageIcon from "../../assets/notificationsIcons/message-icon.svg";
 import newIcon from "../../assets/notificationsIcons/new-icon.svg";
 
@@ -36,7 +36,12 @@ const CreateNoti: FC = () => {
         );
     });
 
-    return <div className="create-div">{notifications}</div>;
+    return (
+        <div className="create-div">
+            <h1 className="title">Create Notifications With useContext</h1>
+            {notifications}
+        </div>
+    );
 };
 
 export default CreateNoti;

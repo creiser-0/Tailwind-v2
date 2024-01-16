@@ -1,5 +1,5 @@
 .select-input{
-    @apply placeholder:text-purple-300 border border-purple-400 focus:outline-purple-700
+    @apply placeholder:text-purple-300 border border-purple-400 focus:outline-purple-700 max-w-96 m-2
 }
 
 .select-div{
@@ -7,9 +7,9 @@
 }
 
 .select-label{
-    @apply text-purple-600 font-bold
+    @apply text-purple-600 font-bold text-3xl
 }
 
 .submit{
-    @apply text-purple-800 w-max px-1 active:bg-gray-200 mt-2 border-purple-400 border active:border-2 active:border-purple-600
+    @apply text-purple-800 w-max px-1 active:bg-gray-200 mt-2 border-purple-400 border active:border-2 active:border-purple-600 text-xl
 }

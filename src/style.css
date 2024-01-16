@@ -36,12 +36,33 @@
     @apply max-w-3 
 }
 
+.home{
+    @apply flex flex-col items-center mt-4
+}
+
+.title{
+    @apply text-violet-700 text-3xl font-bold font-sans mb-4
+}
+
+.subtitle{
+    @apply text-violet-500 text-2xl font-bold font-sans mb-4
+}
+
+.text{
+    @apply text-sm mb-2 text-violet-500 w-3/4 text-justify
+
+}
+
+.whole{
+    @apply fixed w-full h-full
+}
+
 .delete-notification{
     @apply p-0
 }
 
 .notifications{
-    @apply absolute right-4 top-8 bg-slate-300 min-w-20 rounded
+    @apply absolute right-4 top-8 bg-slate-300 min-w-20 rounded flex flex-col-reverse
 }
 
 .layout{

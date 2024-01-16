@@ -1,42 +1,79 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { notificationContext } from "../../contexts/notifications/notificationContext";
+import {
+    iNotification,
+    notificationContext,
+} from "../../contexts/notificationContext";
 import bellIcon from "../../assets/notificationsIcons/bell-icon.svg";
+import {
+    deleteAllNotifications,
+    selectNotificationList,
+} from "../../notificationSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
 const Header: FC = () => {
+    const dispatch = useAppDispatch();
     const [showNoti, setShowNoti] = useState(false);
     const [notSeenNotifications, setNotSeenNotifications] = useState(0);
-    const { contextValue, updateContext } = useContext(notificationContext)
+    const [notifications, setNotifications] = useState<iNotification[]>([]);
+    const { contextValue, updateContext } = useContext(notificationContext);
+    const notificationRedux = useAppSelector(selectNotificationList);
 
-    useEffect(()=>{
-        const length = contextValue!.length
-        if (length === 0){
-            setShowNoti(false)
+    useEffect(() => {
+        setNotifications([...notificationRedux, ...contextValue!]);
+        updateContext!([]);
+        dispatch(deleteAllNotifications());
+    }, []);
+
+    useEffect(() => {
+        if (contextValue![0]) {
+            const newNotifications = [...notifications, contextValue?.at(-1)!];
+            setNotifications(newNotifications);
         }
-        setNotSeenNotifications(length)
-    },[contextValue])
+    }, [contextValue]);
 
-    const notificationList = contextValue!.map((notification, i) => {
-        return (
-            <div className="notification" key={i}>
-                <img
-                    className="notification-image"
-                    src={notification.icon}
-                    alt="notification icon"
-                />
-                <p className="notification-text">{notification.text}</p>
-                <button
-                    className="delete-notification"
-                    onClick={() => {
-                        const newContext = [...contextValue!]
-                        newContext.splice(i, 1)
-                        updateContext!(newContext);
-                    }}
-                >
-                    X
-                </button>
-            </div>
-        );
+    useEffect(() => {
+        if (notificationRedux[0]) {
+            const newNotifications = [
+                ...notifications,
+                notificationRedux.at(-1)!,
+            ];
+            setNotifications(newNotifications);
+        }
+    }, [notificationRedux]);
+
+    useEffect(() => {
+        const length = notifications.length;
+        if (length === 0) {
+            setShowNoti(false);
+        }
+        setNotSeenNotifications(length);
+    }, [notifications]);
+
+    const notificationList = notifications.map((notification, i) => {
+        if (notification) {
+            return (
+                <div className="notification" key={i}>
+                    <img
+                        className="notification-image"
+                        src={notification.icon}
+                        alt="notification icon"
+                    />
+                    <p className="notification-text">{notification.text}</p>
+                    <button
+                        className="delete-notification"
+                        onClick={() => {
+                            const newNotifications = [...notifications];
+                            newNotifications.splice(i, 1);
+                            setNotifications(newNotifications);
+                        }}
+                    >
+                        X
+                    </button>
+                </div>
+            );
+        }
+        return <div key={i}></div>;
     });
 
     return (
@@ -50,7 +87,12 @@ const Header: FC = () => {
                         <Link to={"apiTable"}>Api Table</Link>
                     </li>
                     <li>
-                        <Link to={"SendNoti"}>Create Notification</Link>
+                        <Link to={"sendNotiContext"}>Create Notification</Link>
+                    </li>
+                    <li>
+                        <Link to={"sendNotiRedux"}>
+                            Create Notification with Redux
+                        </Link>
                     </li>
                 </ul>
             </nav>
@@ -69,7 +111,19 @@ const Header: FC = () => {
                 )}
             </button>
             {showNoti && (
-                <div className="notifications">{notificationList}</div>
+                <div
+                    className="whole"
+                    onClick={() => {
+                        setShowNoti(!showNoti);
+                    }}
+                >
+                    <div
+                        className="notifications"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {notificationList}
+                    </div>
+                </div>
             )}
         </header>
     );

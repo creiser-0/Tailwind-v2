@@ -12,7 +12,6 @@ const Select: FC<iSelectProps> = ({ getApiData }) => {
         if (input.current?.value !== "") {
             getApiData(input.current!.value);
         }
-        console.log("EJECUTADO")
     };
 
     return (
